@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Commitments"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Commitments" Height="400" Width="400">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">If applied, this commit will...</Label>
+        <ComboBox Grid.Row="2" Grid.Column="1" SelectedIndex="0">
+            <ComboBoxItem> </ComboBoxItem>
+        </ComboBox>
+        <TextBox Grid.Row="2" Grid.Column="2" FontFamily="Global Monospace">Add foo to bar</TextBox>
+        <TextBox Grid.Row="3" Grid.Column="2" FontFamily="Global Monospace" MinHeight="50"></TextBox>
+        <Button Grid.Row="4" Grid.Column="2">Copy</Button>
     </Grid>
 </Window>
