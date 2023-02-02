@@ -7,6 +7,9 @@
         xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Commitments" Height="480" Width="800">
+    <Window.DataContext>
+        <local:CommitMessage/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -39,6 +42,9 @@
                 Grid.Row="1" Grid.Column="0"
                 FontFamily="Global Monospace"
                 MaxWidth="150" Padding="5" Margin="5">
+                <TextBox.Text>
+                    <Binding Path="Types" />
+                </TextBox.Text>
                 <Behaviors:Interaction.Behaviors>
                     <local:WatermarkBehavior Watermark="fix(api)"/>
                 </Behaviors:Interaction.Behaviors>
@@ -46,6 +52,9 @@
             <TextBox Grid.Row="1" Grid.Column="1"
                 FontFamily="Global Monospace"
                  Padding="5" Margin="5">
+                <TextBox.Text>
+                    <Binding Path="Header" />
+                </TextBox.Text>
                 <Behaviors:Interaction.Behaviors>
                     <local:WatermarkBehavior Watermark="Add foo to bar"/>
                 </Behaviors:Interaction.Behaviors>
@@ -67,6 +76,9 @@
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MinHeight="100" MaxHeight="510" Padding="5" Margin="5"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <TextBox.Text>
+                <Binding Path="Body" />
+            </TextBox.Text>
             <Behaviors:Interaction.Behaviors>
                 <local:WatermarkBehavior Watermark="Address the issue of ... by ensuring that ...&#x0a;However, this may result in ... for some ...&#x0a;These will need to ... to accommodate the new behavior."/>
             </Behaviors:Interaction.Behaviors>
@@ -84,6 +96,9 @@
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MaxHeight="510" Padding="5" Margin="5"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <TextBox.Text>
+                <Binding Path="Footer" />
+            </TextBox.Text>
             <Behaviors:Interaction.Behaviors>
                 <local:WatermarkBehavior Watermark="Resolves: #3486"/>
             </Behaviors:Interaction.Behaviors>
