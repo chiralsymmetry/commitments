@@ -66,12 +66,13 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox Grid.Row="1"
-                      Padding="5" Margin="5"
-                      SelectedIndex="0"
-                      TabIndex="0">
-                <ComboBoxItem> </ComboBoxItem>
-            </ComboBox>
+            <ComboBox 
+                Grid.Row="1"
+                Padding="5" Margin="5"
+                SelectedIndex="0"
+                TabIndex="0"
+                DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                ItemsSource="{Binding TypeNames}"/>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -97,9 +98,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5" TabIndex="5">
-                <ComboBoxItem> </ComboBoxItem>
-            </ComboBox>
+            <ComboBox Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5" TabIndex="5"
+                DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                ItemsSource="{Binding FooterTokens}"/>
         </Grid>
         <TextBox Grid.Row="4" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"

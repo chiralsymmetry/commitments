@@ -15,7 +15,7 @@ namespace Commitments
     /// </summary>
     public partial class App : Application
     {
-        public IConfigurationRoot? Config = null;
+        public IConfiguration? Config = null;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -23,7 +23,7 @@ namespace Commitments
             base.OnStartup(e);
         }
 
-        private static IConfigurationRoot? LoadConfig()
+        private static IConfiguration? LoadConfig()
         {
             try
             {
