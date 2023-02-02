@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="550"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -19,9 +19,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBox Grid.Column="1" Grid.Row="1"
-                 Width="550" Padding="5" Margin="5"
+                 Padding="5" Margin="5"
                  AcceptsReturn="True" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 FontFamily="Global Monospace"/>
+                 FontFamily="Global Monospace" Background="#f8f8f8"/>
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Padding="5" Margin="5">Back</Button>
             <Button Grid.Column="1" Padding="5" Margin="5">Copy</Button>
-            <Button Grid.Column="2" Padding="5" Margin="5">Copy &amp; Clear</Button>
+            <Button Grid.Column="2" Padding="5" Margin="5" Background="#f4cccc">Clear &amp; Back</Button>
         </Grid>
     </Grid>
 </Window>

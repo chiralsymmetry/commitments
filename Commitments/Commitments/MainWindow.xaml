@@ -10,8 +10,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" MinWidth="50"/>
+            <ColumnDefinition Width="500"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -20,45 +20,77 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="1" Grid.Column="2">If applied, this commit will...</Label>
-        <ComboBox Grid.Row="2" Grid.Column="1"
-                  MinWidth="50" Padding="5" Margin="5"
-                  SelectedIndex="0">
-            <ComboBoxItem> </ComboBoxItem>
-        </ComboBox>
-        <TextBox Grid.Row="2" Grid.Column="2"
-                 FontFamily="Global Monospace"
-                 Width="550" Padding="5" Margin="5">
-            <Behaviors:Interaction.Behaviors>
-                <local:WatermarkBehavior Watermark="Add foo to bar"/>
-            </Behaviors:Interaction.Behaviors>
-        </TextBox>
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1"
+               >If applied, this commit will...</Label>
+            <TextBox x:Name="TypesTextBox"
+                Grid.Row="1" Grid.Column="0"
+                FontFamily="Global Monospace"
+                MaxWidth="150" Padding="5" Margin="5">
+                <Behaviors:Interaction.Behaviors>
+                    <local:WatermarkBehavior Watermark="fix(api)"/>
+                </Behaviors:Interaction.Behaviors>
+            </TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                FontFamily="Global Monospace"
+                 Padding="5" Margin="5">
+                <Behaviors:Interaction.Behaviors>
+                    <local:WatermarkBehavior Watermark="Add foo to bar"/>
+                </Behaviors:Interaction.Behaviors>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <CheckBox Margin="5">Breaking Change</CheckBox>
-            <ComboBox Grid.Row="2" MinWidth="50" SelectedIndex="0" Padding="5" Margin="5">
+            <ComboBox Grid.Row="1"
+                  Padding="5" Margin="5"
+                  SelectedIndex="0">
                 <ComboBoxItem> </ComboBoxItem>
             </ComboBox>
         </Grid>
+        <CheckBox Grid.Row="3" Grid.Column="1" Margin="5">Breaking Change</CheckBox>
         <TextBox Grid.Row="3" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
-                 Width="550" MinHeight="100" MaxHeight="510" Padding="5" Margin="5"
+                 MinHeight="100" MaxHeight="510" Padding="5" Margin="5"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <Behaviors:Interaction.Behaviors>
                 <local:WatermarkBehavior Watermark="Address the issue of ... by ensuring that ...&#x0a;However, this may result in ... for some ...&#x0a;These will need to ... to accommodate the new behavior."/>
             </Behaviors:Interaction.Behaviors>
         </TextBox>
-
-        <Grid Grid.Row="4" Grid.Column="2">
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ComboBox Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5">
+                <ComboBoxItem> </ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <TextBox Grid.Row="4" Grid.Column="2"
+                 FontFamily="Global Monospace" AcceptsReturn="True"
+                 MaxHeight="510" Padding="5" Margin="5"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <Behaviors:Interaction.Behaviors>
+                <local:WatermarkBehavior Watermark="Resolves: #3486"/>
+            </Behaviors:Interaction.Behaviors>
+        </TextBox>
+        <Grid Grid.Row="5" Grid.Column="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -68,7 +100,7 @@
             <Button Grid.Column="2" Padding="5" Margin="5">Preview</Button>
             <Button Grid.Column="3" Padding="5" Margin="5" Background="#f4cccc">Clear</Button>
         </Grid>
-        <StatusBar Grid.Row="6" Grid.ColumnSpan="4">
+        <StatusBar Grid.Row="7" Grid.ColumnSpan="4">
             <StatusBarItem> </StatusBarItem>
             <StatusBarItem></StatusBarItem>
         </StatusBar>
