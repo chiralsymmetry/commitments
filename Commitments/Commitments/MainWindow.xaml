@@ -38,10 +38,10 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1"
                >If applied, this commit will...</Label>
-            <TextBox x:Name="TypesTextBox"
-                Grid.Row="1" Grid.Column="0"
-                FontFamily="Global Monospace"
-                MaxWidth="150" Padding="5" Margin="5">
+            <TextBox Grid.Row="1" Grid.Column="0"
+                     FontFamily="Global Monospace"
+                     MaxWidth="150" Padding="5" Margin="5"
+                     TabIndex="2">
                 <TextBox.Text>
                     <Binding Path="Types" />
                 </TextBox.Text>
@@ -50,8 +50,9 @@
                 </Behaviors:Interaction.Behaviors>
             </TextBox>
             <TextBox Grid.Row="1" Grid.Column="1"
-                FontFamily="Global Monospace"
-                 Padding="5" Margin="5">
+                     FontFamily="Global Monospace"
+                     Padding="5" Margin="5"
+                     TabIndex="3">
                 <TextBox.Text>
                     <Binding Path="Header" />
                 </TextBox.Text>
@@ -66,16 +67,24 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ComboBox Grid.Row="1"
-                  Padding="5" Margin="5"
-                  SelectedIndex="0">
+                      Padding="5" Margin="5"
+                      SelectedIndex="0"
+                      TabIndex="0">
                 <ComboBoxItem> </ComboBoxItem>
             </ComboBox>
         </Grid>
-        <CheckBox Grid.Row="3" Grid.Column="1" Margin="5">Breaking Change</CheckBox>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <CheckBox Grid.Row="0" Margin="5" TabIndex="1">Breaking Change</CheckBox>
+        </Grid>
         <TextBox Grid.Row="3" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MinHeight="100" MaxHeight="510" Padding="5" Margin="5"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 TabIndex="4">
             <TextBox.Text>
                 <Binding Path="Body" />
             </TextBox.Text>
@@ -88,14 +97,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5">
+            <ComboBox Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5" TabIndex="5">
                 <ComboBoxItem> </ComboBoxItem>
             </ComboBox>
         </Grid>
         <TextBox Grid.Row="4" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MaxHeight="510" Padding="5" Margin="5"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 TabIndex="6">
             <TextBox.Text>
                 <Binding Path="Footer" />
             </TextBox.Text>
@@ -110,10 +120,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Padding="5" Margin="5">Add Breaking Change</Button>
-            <Button Grid.Column="1" Padding="5" Margin="5">Copy</Button>
-            <Button Grid.Column="2" Padding="5" Margin="5">Preview</Button>
-            <Button Grid.Column="3" Padding="5" Margin="5" Background="#f4cccc">Clear</Button>
+            <Button Grid.Column="0" Padding="5" Margin="5" TabIndex="7">Add Breaking Change</Button>
+            <Button Grid.Column="1" Padding="5" Margin="5" TabIndex="8">Copy</Button>
+            <Button Grid.Column="2" Padding="5" Margin="5" TabIndex="9">Preview</Button>
+            <Button Grid.Column="3" Padding="5" Margin="5" TabIndex="10" Background="#f4cccc">Clear</Button>
         </Grid>
         <StatusBar Grid.Row="7" Grid.ColumnSpan="4">
             <StatusBarItem> </StatusBarItem>
