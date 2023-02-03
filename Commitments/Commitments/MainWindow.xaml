@@ -106,7 +106,10 @@
             </Grid.RowDefinitions>
             <ComboBox Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5" TabIndex="5"
                 DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
-                ItemsSource="{Binding FooterTokens}"/>
+                ItemsSource="{Binding FooterTokens}"
+                DropDownClosed="FootersComboBox_DropDownClosed"
+                PreviewKeyDown="FootersComboBox_PreviewKeyDown"
+                SelectionChanged="FootersComboBox_SelectionChanged"/>
         </Grid>
         <TextBox x:Name="FootersTextBox"
                  Grid.Row="4" Grid.Column="2"

@@ -136,6 +136,7 @@ namespace Commitments
             textBox.Text += textToAdd;
             textBox.CaretIndex = textBox.Text.Length;
             comboBox.IsDropDownOpen = false;
+            FocusManager.SetFocusedElement(this, textBox);
         }
 
         private void TypesComboBox_DropDownClosed(object sender, EventArgs e)
@@ -165,6 +166,42 @@ namespace Commitments
             if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
             {
                 ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
+            }
+        }
+
+        private void FootersComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox.SelectedIndex != 0)
+            {
+                string item = (string)comboBox.SelectedItem;
+                string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
+                ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
+            }
+        }
+
+        private void FootersComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ComboBox comboBox = (ComboBox)sender;
+                if (comboBox.IsDropDownOpen == false && comboBox.SelectedIndex != 0)
+                {
+                    string item = (string)comboBox.SelectedItem;
+                    string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
+                    ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
+                }
+            }
+        }
+
+        private void FootersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
+            {
+                string item = (string)comboBox.SelectedItem;
+                string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
+                ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
             }
         }
     }
