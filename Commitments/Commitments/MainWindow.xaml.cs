@@ -41,6 +41,11 @@ namespace Commitments
             InitializeComponent();
         }
 
+        private static bool IsBreakingChangeToken(string s)
+        {
+            return s == "BREAKING CHANGE" || s == "BREAKING-CHANGE";
+        }
+
         private void PopulateTypes()
         {
             var config = ((App)Application.Current).Config;
@@ -99,6 +104,7 @@ namespace Commitments
         private void ClearTextBox(TextBox textBox)
         {
             textBox.Clear();
+            // Trigger Watermark behavior by getting and losing focus.
             var focusedElement = FocusManager.GetFocusedElement(this);
             FocusManager.SetFocusedElement(this, textBox);
             FocusManager.SetFocusedElement(this, focusedElement);
@@ -174,10 +180,7 @@ namespace Commitments
             string item = (string)comboBox.SelectedItem;
             string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
             ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
-            if (item == "BREAKING CHANGE")
-            {
-                BreakingCheckBox.IsChecked = true;
-            }
+            BreakingCheckBox.IsChecked |= IsBreakingChangeToken(item);
         }
 
         private void FootersComboBox_DropDownClosed(object sender, EventArgs e)
@@ -207,6 +210,20 @@ namespace Commitments
             if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
             {
                 FootersComboBoxChange(comboBox);
+            }
+        }
+
+        private void BreakingChangeButton_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < FooterTokens.Count; i++)
+            {
+                var token = FooterTokens[i];
+                if (IsBreakingChangeToken(token))
+                {
+                    FootersComboBox.SelectedIndex = i;
+                    FootersComboBoxChange(FootersComboBox);
+                    break;
+                }
             }
         }
     }
