@@ -35,7 +35,7 @@ namespace Commitments
         {
             get
             {
-                return $"{FullHeader}\n\n{Body}\n\n{Footer}";
+                return string.Join($"{Environment.NewLine}{Environment.NewLine}", new string[] { FullHeader, Body, Footer });
             }
         }
 
@@ -58,7 +58,8 @@ namespace Commitments
         private static int MaxWidth(string s)
         {
             int maxWidth = 0;
-            foreach (var line in s.Split("\n"))
+            s = s.ReplaceLineEndings();
+            foreach (var line in s.Split(Environment.NewLine))
             {
                 maxWidth = Math.Max(maxWidth, line.Length);
             }
