@@ -21,6 +21,8 @@ namespace Commitments
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly Brush DefaultColor = System.Windows.SystemColors.WindowBrush;
+        private static readonly Brush WarningColor = new SolidColorBrush(Color.FromRgb(244, 204, 204));
         private static readonly string Nonselection = " ";
         public List<string> TypeNames { get; set; } = new()
         {
@@ -39,6 +41,57 @@ namespace Commitments
             PopulateTypes();
             PopulateFooters();
             InitializeComponent();
+            var message = (CommitMessage)DataContext;
+            message.PropertyChanged += Message_PropertyChanged;
+        }
+
+        private void Message_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var message = (CommitMessage)DataContext;
+            if (message.FullHeader.Length > 0)
+            {
+                var textBoxBG = DefaultColor;
+                var trimmedMessage = message.Header.Trim();
+                if (message.Header != trimmedMessage)
+                {
+                    // Header should (I assume) not have unnecessary white-space characters.
+                    textBoxBG = WarningColor;
+                }
+                if (message.FullHeader.Length > 50)
+                {
+                    // Header should not be longer than 50 characters.
+                    textBoxBG = WarningColor;
+                }
+                if (message.Types.Length == 0)
+                {
+                    // When not using Conventional Commits, header's first character should be uppercase.
+                    var firstChar = trimmedMessage[..1];
+                    if (firstChar != firstChar.ToUpper())
+                    {
+                        textBoxBG = WarningColor;
+                    }
+                }
+                else
+                {
+                    // Using Conventional Commits, header's first character should be lowercase.
+                    var firstChar = trimmedMessage[..1];
+                    if (firstChar != firstChar.ToLower())
+                    {
+                        textBoxBG = WarningColor;
+                    }
+                }
+                if (Char.IsPunctuation(trimmedMessage[^1]))
+                {
+                    // Header should not end in interpunctuation.
+                    // TODO: Explore alternatives to Char.IsPunctuation which is a bit too harsh.
+                    textBoxBG = WarningColor;
+                }
+                HeaderTextBox.Background = textBoxBG;
+            }
+            else
+            {
+                HeaderTextBox.Background = DefaultColor;
+            }
         }
 
         private static bool IsBreakingChangeToken(string s)

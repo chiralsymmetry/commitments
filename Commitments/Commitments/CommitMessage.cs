@@ -1,18 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Commitments
 {
-    public class CommitMessage
+    public class CommitMessage : INotifyPropertyChanged
     {
-        public string Types { get; set; } = string.Empty;
-        public bool IsBreaking { get; set; } = false;
-        public string Header { get; set; } = string.Empty;
-        public string Body { get; set; } = string.Empty;
-        public string Footer { get; set; } = string.Empty;
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private string _types = string.Empty;
+        private bool _isBreaking = false;
+        private string _header = string.Empty;
+        private string _body = string.Empty;
+        private string _footer = string.Empty;
+
+        public string Types
+        {
+            get
+            {
+                return _types;
+            }
+            set
+            {
+                _types = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool IsBreaking
+        {
+            get
+            {
+                return _isBreaking;
+            }
+            set
+            {
+                _isBreaking = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Header
+        {
+            get
+            {
+                return _header;
+            }
+            set
+            {
+                _header = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Body
+        {
+            get
+            {
+                return _body;
+            }
+            set
+            {
+                _body = value;
+                OnPropertyChanged();
+            }
+        }
+        public string Footer
+        {
+            get
+            {
+                return _footer;
+            }
+            set
+            {
+                _footer = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string FullHeader
         {
