@@ -169,14 +169,23 @@ namespace Commitments
             }
         }
 
+        private void FootersComboBoxChange(ComboBox comboBox)
+        {
+            string item = (string)comboBox.SelectedItem;
+            string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
+            ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
+            if (item == "BREAKING CHANGE")
+            {
+                BreakingCheckBox.IsChecked = true;
+            }
+        }
+
         private void FootersComboBox_DropDownClosed(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
             if (comboBox.SelectedIndex != 0)
             {
-                string item = (string)comboBox.SelectedItem;
-                string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
-                ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
+                FootersComboBoxChange(comboBox);
             }
         }
 
@@ -187,9 +196,7 @@ namespace Commitments
                 ComboBox comboBox = (ComboBox)sender;
                 if (comboBox.IsDropDownOpen == false && comboBox.SelectedIndex != 0)
                 {
-                    string item = (string)comboBox.SelectedItem;
-                    string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
-                    ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
+                    FootersComboBoxChange(comboBox);
                 }
             }
         }
@@ -199,9 +206,7 @@ namespace Commitments
             ComboBox comboBox = (ComboBox)sender;
             if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
             {
-                string item = (string)comboBox.SelectedItem;
-                string textToAdd = $"{item}{FooterExamplesDescriptions[item].Item1}";
-                ReadComboBoxSetTextBox(comboBox, FootersTextBox, textToAdd, Environment.NewLine);
+                FootersComboBoxChange(comboBox);
             }
         }
     }
