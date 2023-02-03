@@ -41,6 +41,8 @@ namespace Commitments
             PopulateTypes();
             PopulateFooters();
             InitializeComponent();
+            // Header is obligatory, so it should start out with a warning.
+            HeaderTextBox.Background = WarningColor;
             var message = (CommitMessage)DataContext;
             message.PropertyChanged += Message_PropertyChanged;
         }
@@ -48,7 +50,12 @@ namespace Commitments
         private void Message_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             var message = (CommitMessage)DataContext;
-            if (message.FullHeader.Length > 0)
+            if (message.Header.Length == 0)
+            {
+                // Header is obligatory.
+                HeaderTextBox.Background = WarningColor;
+            }
+            else if (message.FullHeader.Length > 0)
             {
                 var textBoxBG = DefaultColor;
                 var trimmedHeader = message.Header.Trim();
