@@ -35,7 +35,20 @@ namespace Commitments
         {
             get
             {
-                return string.Join($"{Environment.NewLine}{Environment.NewLine}", new string[] { FullHeader, Body, Footer });
+                var parts = new List<string>();
+                if (FullHeader.Length > 0)
+                {
+                    parts.Add(FullHeader);
+                }
+                if (Body.Length > 0)
+                {
+                    parts.Add(Body);
+                }
+                if (Footer.Length > 0)
+                {
+                    parts.Add(Footer);
+                }
+                return string.Join($"{Environment.NewLine}{Environment.NewLine}", parts);
             }
         }
 
