@@ -81,7 +81,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="1">Breaking Change</CheckBox>
+            <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="1" IsChecked="{Binding IsBreaking}">Breaking Change</CheckBox>
         </Grid>
         <TextBox x:Name="BodyTextBox"
                  Grid.Row="3" Grid.Column="2"
