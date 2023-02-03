@@ -125,24 +125,47 @@ namespace Commitments
             previewWindow.ShowDialog();
         }
 
-        private string GetResetComboBoxValue(ComboBox comboBox)
+        private void ReadComboBoxSetTextBox(ComboBox comboBox, TextBox textBox, string textToAdd, string separator)
         {
-            string output = comboBox.Text;
             comboBox.SelectedIndex = 0;
-            return output;
+            FocusManager.SetFocusedElement(this, textBox);
+            if (textBox.Text.Length > 0)
+            {
+                textBox.Text += separator;
+            }
+            textBox.Text += textToAdd;
+            textBox.CaretIndex = textBox.Text.Length;
+            comboBox.IsDropDownOpen = false;
         }
 
         private void TypesComboBox_DropDownClosed(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
-            var selection = GetResetComboBoxValue(comboBox);
-            FocusManager.SetFocusedElement(this, TypesTextBox);
-            if (TypesTextBox.Text.Length > 0)
+            if (comboBox.SelectedIndex != 0)
             {
-                TypesTextBox.Text += ",";
+                ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
             }
-            TypesTextBox.Text += selection;
-            TypesTextBox.CaretIndex = TypesTextBox.Text.Length;
+        }
+
+        private void TypesComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ComboBox comboBox = (ComboBox)sender;
+                if (comboBox.IsDropDownOpen == false && comboBox.SelectedIndex != 0)
+                {
+                    ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
+                }
+            }
+        }
+
+        private void TypesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
+            {
+                ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
+            }
         }
     }
 }
