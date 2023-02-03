@@ -112,5 +112,11 @@ namespace Commitments
             ClearTextBox(FootersTextBox);
             BreakingCheckBox.IsChecked = false;
         }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var message = (CommitMessage)this.DataContext;
+            Clipboard.SetText(message.Message);
+        }
     }
 }
