@@ -95,5 +95,22 @@ namespace Commitments
                 }
             }
         }
+
+        private void ClearTextBox(TextBox textBox)
+        {
+            textBox.Clear();
+            var focusedElement = FocusManager.GetFocusedElement(this);
+            FocusManager.SetFocusedElement(this, textBox);
+            FocusManager.SetFocusedElement(this, focusedElement);
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearTextBox(TypesTextBox);
+            ClearTextBox(HeaderTextBox);
+            ClearTextBox(BodyTextBox);
+            ClearTextBox(FootersTextBox);
+            BreakingCheckBox.IsChecked = false;
+        }
     }
 }

@@ -38,7 +38,8 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1"
                >If applied, this commit will...</Label>
-            <TextBox Grid.Row="1" Grid.Column="0"
+            <TextBox x:Name="TypesTextBox"
+                     Grid.Row="1" Grid.Column="0"
                      FontFamily="Global Monospace"
                      MaxWidth="150" Padding="5" Margin="5"
                      TabIndex="2">
@@ -49,7 +50,8 @@
                     <local:WatermarkBehavior Watermark="fix(api)"/>
                 </Behaviors:Interaction.Behaviors>
             </TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1"
+            <TextBox x:Name="HeaderTextBox"
+                     Grid.Row="1" Grid.Column="1"
                      FontFamily="Global Monospace"
                      Padding="5" Margin="5"
                      TabIndex="3">
@@ -79,9 +81,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <CheckBox Grid.Row="0" Margin="5" TabIndex="1">Breaking Change</CheckBox>
+            <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="1">Breaking Change</CheckBox>
         </Grid>
-        <TextBox Grid.Row="3" Grid.Column="2"
+        <TextBox x:Name="BodyTextBox"
+                 Grid.Row="3" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MinHeight="100" MaxHeight="510" Padding="5" Margin="5"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -102,7 +105,8 @@
                 DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                 ItemsSource="{Binding FooterTokens}"/>
         </Grid>
-        <TextBox Grid.Row="4" Grid.Column="2"
+        <TextBox x:Name="FootersTextBox"
+                 Grid.Row="4" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MaxHeight="510" Padding="5" Margin="5"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -124,7 +128,7 @@
             <Button Grid.Column="0" Padding="5" Margin="5" TabIndex="7">Add Breaking Change</Button>
             <Button Grid.Column="1" Padding="5" Margin="5" TabIndex="8">Copy</Button>
             <Button Grid.Column="2" Padding="5" Margin="5" TabIndex="9">Preview</Button>
-            <Button Grid.Column="3" Padding="5" Margin="5" TabIndex="10" Background="#f4cccc">Clear</Button>
+            <Button Grid.Column="3" Padding="5" Margin="5" TabIndex="10" Background="#f4cccc" Click="ClearButton_Click">Clear</Button>
         </Grid>
         <StatusBar Grid.Row="7" Grid.ColumnSpan="4">
             <StatusBarItem> </StatusBarItem>
