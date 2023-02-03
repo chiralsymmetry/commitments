@@ -51,8 +51,8 @@ namespace Commitments
             if (message.FullHeader.Length > 0)
             {
                 var textBoxBG = DefaultColor;
-                var trimmedMessage = message.Header.Trim();
-                if (message.Header != trimmedMessage)
+                var trimmedHeader = message.Header.Trim();
+                if (message.Header != trimmedHeader)
                 {
                     // Header should (I assume) not have unnecessary white-space characters.
                     textBoxBG = WarningColor;
@@ -65,7 +65,7 @@ namespace Commitments
                 if (message.Types.Length == 0)
                 {
                     // When not using Conventional Commits, header's first character should be uppercase.
-                    var firstChar = trimmedMessage[..1];
+                    var firstChar = trimmedHeader[..1];
                     if (firstChar != firstChar.ToUpper())
                     {
                         textBoxBG = WarningColor;
@@ -74,13 +74,13 @@ namespace Commitments
                 else
                 {
                     // Using Conventional Commits, header's first character should be lowercase.
-                    var firstChar = trimmedMessage[..1];
+                    var firstChar = trimmedHeader[..1];
                     if (firstChar != firstChar.ToLower())
                     {
                         textBoxBG = WarningColor;
                     }
                 }
-                if (Char.IsPunctuation(trimmedMessage[^1]))
+                if (Char.IsPunctuation(trimmedHeader[^1]))
                 {
                     // Header should not end in interpunctuation.
                     // TODO: Explore alternatives to Char.IsPunctuation which is a bit too harsh.
