@@ -74,7 +74,8 @@
                 SelectedIndex="0"
                 TabIndex="0"
                 DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
-                ItemsSource="{Binding TypeNames}"/>
+                ItemsSource="{Binding TypeNames}"
+                DropDownClosed="TypesComboBox_DropDownClosed"/>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>

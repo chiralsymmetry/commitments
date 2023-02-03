@@ -124,5 +124,25 @@ namespace Commitments
             var previewWindow = new PreviewWindow((CommitMessage)this.DataContext);
             previewWindow.ShowDialog();
         }
+
+        private string GetResetComboBoxValue(ComboBox comboBox)
+        {
+            string output = comboBox.Text;
+            comboBox.SelectedIndex = 0;
+            return output;
+        }
+
+        private void TypesComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            var selection = GetResetComboBoxValue(comboBox);
+            FocusManager.SetFocusedElement(this, TypesTextBox);
+            if (TypesTextBox.Text.Length > 0)
+            {
+                TypesTextBox.Text += ",";
+            }
+            TypesTextBox.Text += selection;
+            TypesTextBox.CaretIndex = TypesTextBox.Text.Length;
+        }
     }
 }
