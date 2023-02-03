@@ -19,8 +19,9 @@ namespace Commitments
     /// </summary>
     public partial class PreviewWindow : Window
     {
-        public PreviewWindow()
+        public PreviewWindow(CommitMessage dataContext)
         {
+            DataContext = dataContext;
             InitializeComponent();
         }
     }

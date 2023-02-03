@@ -118,5 +118,11 @@ namespace Commitments
             var message = (CommitMessage)this.DataContext;
             Clipboard.SetText(message.Message);
         }
+
+        private void PreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            var previewWindow = new PreviewWindow((CommitMessage)this.DataContext);
+            previewWindow.ShowDialog();
+        }
     }
 }

@@ -21,7 +21,8 @@
         <TextBox Grid.Column="1" Grid.Row="1"
                  Padding="5" Margin="5"
                  AcceptsReturn="True" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 FontFamily="Global Monospace" Background="#f8f8f8"/>
+                 FontFamily="Global Monospace" Background="#f8f8f8" Text="{Binding Message, Mode=OneTime}"/>
+
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
