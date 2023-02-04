@@ -30,5 +30,10 @@ namespace Commitments
             var message = (CommitMessage)this.DataContext;
             Clipboard.SetText(message.Message);
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
