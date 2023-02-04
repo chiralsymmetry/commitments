@@ -24,5 +24,11 @@ namespace Commitments
             DataContext = dataContext;
             InitializeComponent();
         }
+
+        private void CopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var message = (CommitMessage)this.DataContext;
+            Clipboard.SetText(message.Message);
+        }
     }
 }

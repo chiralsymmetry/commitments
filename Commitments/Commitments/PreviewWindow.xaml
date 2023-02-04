@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Padding="5" Margin="5">Back</Button>
-            <Button Grid.Column="1" Padding="5" Margin="5">Copy</Button>
+            <Button Grid.Column="1" Padding="5" Margin="5" Click="CopyButton_Click">Copy</Button>
             <Button Grid.Column="2" Padding="5" Margin="5" Background="#f4cccc">Clear &amp; Back</Button>
         </Grid>
     </Grid>
