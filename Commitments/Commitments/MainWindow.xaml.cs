@@ -99,6 +99,25 @@ namespace Commitments
             {
                 HeaderTextBox.Background = DefaultColor;
             }
+            if (message.BodyWidth > 72)
+            {
+                // Body should not be wider than 72 characters.
+                // Exception: quoted code may be as wide as needed.
+                BodyTextBox.Background = WarningColor;
+            }
+            else
+            {
+                BodyTextBox.Background = DefaultColor;
+            }
+            if (message.FooterWidth > 72)
+            {
+                // Footers should (I assume) be subject to the same limit as the body.
+                FootersTextBox.Background = WarningColor;
+            }
+            else
+            {
+                FootersTextBox.Background = DefaultColor;
+            }
         }
 
         private static bool IsBreakingChangeToken(string s)
