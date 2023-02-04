@@ -19,9 +19,11 @@ namespace Commitments
     /// </summary>
     public partial class PreviewWindow : Window
     {
-        public PreviewWindow(CommitMessage dataContext)
+        private readonly MainWindow _parent;
+        public PreviewWindow(MainWindow parent)
         {
-            DataContext = dataContext;
+            _parent = parent;
+            DataContext = _parent.DataContext;
             InitializeComponent();
         }
 
@@ -34,6 +36,13 @@ namespace Commitments
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            _parent.ReturnFromPreview(false);
+        }
+
+        private void ClearBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            _parent.ReturnFromPreview(true);
         }
     }
 }

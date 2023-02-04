@@ -189,13 +189,18 @@ namespace Commitments
             FocusManager.SetFocusedElement(this, focusedElement);
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        private void ClearAll()
         {
             ClearTextBox(TypesTextBox);
             ClearTextBox(HeaderTextBox);
             ClearTextBox(BodyTextBox);
             ClearTextBox(FootersTextBox);
             BreakingCheckBox.IsChecked = false;
+        }
+
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClearAll();
         }
 
         private void CopyButton_Click(object sender, RoutedEventArgs e)
@@ -206,8 +211,16 @@ namespace Commitments
 
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
         {
-            var previewWindow = new PreviewWindow((CommitMessage)this.DataContext);
+            var previewWindow = new PreviewWindow(this);
             previewWindow.ShowDialog();
+        }
+
+        public void ReturnFromPreview(bool clear)
+        {
+            if (clear)
+            {
+                ClearAll();
+            }
         }
 
         private void ReadComboBoxSetTextBox(ComboBox comboBox, TextBox textBox, string textToAdd, string separator)
