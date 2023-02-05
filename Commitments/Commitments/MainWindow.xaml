@@ -54,7 +54,9 @@
                      Grid.Row="1" Grid.Column="1"
                      FontFamily="Global Monospace"
                      Padding="5" Margin="5"
-                     TabIndex="3">
+                     TabIndex="3"
+                     MouseEnter="HeaderTextBox_MouseEnter"
+                     MouseLeave="HeaderTextBox_MouseLeave">
                 <TextBox.Text>
                     <Binding Path="Header" />
                 </TextBox.Text>
@@ -139,7 +141,7 @@
         </Grid>
         <StatusBar Grid.Row="7" Grid.ColumnSpan="4">
             <StatusBarItem> </StatusBarItem>
-            <StatusBarItem></StatusBarItem>
+            <StatusBarItem x:Name="HintStatus"></StatusBarItem>
         </StatusBar>
     </Grid>
 </Window>

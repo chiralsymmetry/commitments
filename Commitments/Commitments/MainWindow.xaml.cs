@@ -35,6 +35,9 @@ namespace Commitments
 
         public Dictionary<string, string> TypeDescriptions { get; set; } = new();
         public Dictionary<string, Tuple<string, string>> FooterExamplesDescriptions { get; set; } = new();
+        private Dictionary<IInputElement, Dictionary<ValidationTag, string>> Hints { get; set; } = new();
+
+        private IInputElement? CurrentFocus = null;
 
         public MainWindow()
         {
@@ -42,18 +45,61 @@ namespace Commitments
             PopulateFooters();
             InitializeComponent();
             // Header is obligatory, so it should start out with a warning.
-            HeaderTextBox.Background = WarningColor;
             var message = (CommitMessage)DataContext;
             message.PropertyChanged += Message_PropertyChanged;
+            ClearAll();
         }
 
         private void Message_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             var message = (CommitMessage)DataContext;
+            HeaderChecks(message);
+            BodyChecks(message);
+            FootersChecks(message);
+        }
+
+        private void SetHint(IInputElement element, ValidationTag tag, string hint)
+        {
+            if (!Hints.ContainsKey(element))
+            {
+                Hints.Add(element, new());
+            }
+            Hints[element][tag] = hint;
+        }
+
+        private void UnsetHint(IInputElement element, ValidationTag tag)
+        {
+            if (Hints.ContainsKey(element) && Hints[element].ContainsKey(tag))
+            {
+                Hints[element].Remove(tag);
+            }
+        }
+
+        private string GetHints(IInputElement element)
+        {
+            string output = string.Empty;
+            if (Hints.ContainsKey(element))
+            {
+                output = String.Join(" ", Hints[element].Values);
+            }
+            return output;
+        }
+
+        private enum ValidationTag
+        {
+            WHITESPACE,
+            LENGTH,
+            CASE,
+            PUNCTUATION
+        }
+
+        private void HeaderChecks(CommitMessage message)
+        {
             if (message.Header.Length == 0)
             {
                 // Header is obligatory.
                 HeaderTextBox.Background = WarningColor;
+                SetHint(HeaderTextBox, ValidationTag.LENGTH, "Headers are obligatory.");
             }
             else if (message.FullHeader.Length > 0)
             {
@@ -63,11 +109,21 @@ namespace Commitments
                 {
                     // Header should (I assume) not have unnecessary white-space characters.
                     textBoxBG = WarningColor;
+                    SetHint(HeaderTextBox, ValidationTag.WHITESPACE, "Headers should not start/end with whitespace.");
+                }
+                else
+                {
+                    UnsetHint(HeaderTextBox, ValidationTag.WHITESPACE);
                 }
                 if (message.FullHeader.Length > 50)
                 {
                     // Header should not be longer than 50 characters.
                     textBoxBG = WarningColor;
+                    SetHint(HeaderTextBox, ValidationTag.LENGTH, "Headers should not be longer than 50 characters.");
+                }
+                else
+                {
+                    UnsetHint(HeaderTextBox, ValidationTag.LENGTH);
                 }
                 if (message.Types.Length == 0)
                 {
@@ -76,6 +132,11 @@ namespace Commitments
                     if (firstChar != firstChar.ToUpper())
                     {
                         textBoxBG = WarningColor;
+                        SetHint(HeaderTextBox, ValidationTag.CASE, "Header should be capitalized.");
+                    }
+                    else
+                    {
+                        UnsetHint(HeaderTextBox, ValidationTag.CASE);
                     }
                 }
                 else
@@ -85,13 +146,23 @@ namespace Commitments
                     if (firstChar != firstChar.ToLower())
                     {
                         textBoxBG = WarningColor;
+                        SetHint(HeaderTextBox, ValidationTag.CASE, "Header shouldn't be capitalized.");
+                    }
+                    else
+                    {
+                        UnsetHint(HeaderTextBox, ValidationTag.CASE);
                     }
                 }
                 if (Char.IsPunctuation(trimmedHeader[^1]))
                 {
-                    // Header should not end in interpunctuation.
+                    // Header should not end in punctuation.
                     // TODO: Explore alternatives to Char.IsPunctuation which is a bit too harsh.
                     textBoxBG = WarningColor;
+                    SetHint(HeaderTextBox, ValidationTag.PUNCTUATION, "Header should not end in a punctuation character.");
+                }
+                else
+                {
+                    UnsetHint(HeaderTextBox, ValidationTag.PUNCTUATION);
                 }
                 HeaderTextBox.Background = textBoxBG;
             }
@@ -99,6 +170,9 @@ namespace Commitments
             {
                 HeaderTextBox.Background = DefaultColor;
             }
+        }
+        private void BodyChecks(CommitMessage message)
+        {
             if (message.BodyWidth > 72)
             {
                 // Body should not be wider than 72 characters.
@@ -109,6 +183,10 @@ namespace Commitments
             {
                 BodyTextBox.Background = DefaultColor;
             }
+        }
+
+        private void FootersChecks(CommitMessage message)
+        {
             if (message.FooterWidth > 72)
             {
                 // Footers should (I assume) be subject to the same limit as the body.
@@ -317,6 +395,30 @@ namespace Commitments
                     break;
                 }
             }
+        }
+
+        private void GetFocus(IInputElement element)
+        {
+            CurrentFocus = element;
+            HintStatus.Content = GetHints(element);
+        }
+
+        private void LoseFocus(IInputElement element)
+        {
+            if (CurrentFocus == element)
+            {
+                HintStatus.Content = string.Empty;
+            }
+        }
+
+        private void HeaderTextBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            GetFocus(HeaderTextBox);
+        }
+
+        private void HeaderTextBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            LoseFocus(HeaderTextBox);
         }
     }
 }
