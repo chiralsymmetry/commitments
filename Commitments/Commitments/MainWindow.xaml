@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Commitments"
-        xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Commitments" Height="480" Width="800">
     <Window.DataContext>
@@ -38,31 +37,42 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1"
                >If applied, this commit will...</Label>
+            <TextBox x:Name="TypesWatermarkTextBox"
+                     Grid.Row="1" Grid.Column="0"
+                     FontFamily="Global Monospace" FontStyle="Italic"
+                     MaxWidth="150" Padding="5" Margin="5" Opacity="1"
+                     Text="fix(api)" IsEnabled="False"/>
             <TextBox x:Name="TypesTextBox"
                      Grid.Row="1" Grid.Column="0"
                      FontFamily="Global Monospace"
-                     MaxWidth="150" Padding="5" Margin="5"
-                     TabIndex="2">
+                     MaxWidth="150" Padding="5" Margin="5" Opacity="0"
+                     TabIndex="2"
+                     TextChanged="TypesTextBox_TextChanged"
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus"
+                     MouseEnter="TextBox_MouseEnter"
+                     MouseLeave="TextBox_MouseLeave">
                 <TextBox.Text>
-                    <Binding Path="Types" />
+                    <Binding Path="Types" UpdateSourceTrigger="PropertyChanged" />
                 </TextBox.Text>
-                <Behaviors:Interaction.Behaviors>
-                    <local:WatermarkBehavior Watermark="fix(api)"/>
-                </Behaviors:Interaction.Behaviors>
             </TextBox>
+            <TextBox x:Name="HeaderWatermarkTextBox"
+                     Grid.Row="1" Grid.Column="1"
+                     FontFamily="Global Monospace" FontStyle="Italic"
+                     Padding="5" Margin="5" Opacity="1" Text="Add foo to bar"
+                     Background="#f4cccc" IsEnabled="False"/>
             <TextBox x:Name="HeaderTextBox"
                      Grid.Row="1" Grid.Column="1"
                      FontFamily="Global Monospace"
-                     Padding="5" Margin="5"
+                     Padding="5" Margin="5" Opacity="0"
                      TabIndex="3"
-                     MouseEnter="HeaderTextBox_MouseEnter"
-                     MouseLeave="HeaderTextBox_MouseLeave">
+                     GotFocus="TextBox_GotFocus"
+                     LostFocus="TextBox_LostFocus"
+                     MouseEnter="TextBox_MouseEnter"
+                     MouseLeave="TextBox_MouseLeave">
                 <TextBox.Text>
-                    <Binding Path="Header" />
+                    <Binding Path="Header" UpdateSourceTrigger="PropertyChanged" />
                 </TextBox.Text>
-                <Behaviors:Interaction.Behaviors>
-                    <local:WatermarkBehavior Watermark="Add foo to bar"/>
-                </Behaviors:Interaction.Behaviors>
             </TextBox>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="1">
@@ -88,18 +98,26 @@
             </Grid.RowDefinitions>
             <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="1" IsChecked="{Binding IsBreaking}">Breaking Change</CheckBox>
         </Grid>
+        <TextBox x:Name="BodyWatermarkTextBox"
+                 Grid.Row="3" Grid.Column="2"
+                 FontFamily="Global Monospace" FontStyle="Italic" AcceptsReturn="True"
+                 MinHeight="100" MaxHeight="510" Padding="5" Margin="5" Opacity="1"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 IsEnabled="False"
+                 Text="Address the issue of ... by ensuring that ...&#x0a;However, this may result in ... for some ...&#x0a;These will need to ... to accommodate the new behavior."/>
         <TextBox x:Name="BodyTextBox"
                  Grid.Row="3" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
-                 MinHeight="100" MaxHeight="510" Padding="5" Margin="5"
+                 MinHeight="100" MaxHeight="510" Padding="5" Margin="5" Opacity="0"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 TabIndex="4">
+                 TabIndex="4"
+                 GotFocus="TextBox_GotFocus"
+                 LostFocus="TextBox_LostFocus"
+                 MouseEnter="TextBox_MouseEnter"
+                 MouseLeave="TextBox_MouseLeave">
             <TextBox.Text>
-                <Binding Path="Body" />
+                <Binding Path="Body" UpdateSourceTrigger="PropertyChanged" />
             </TextBox.Text>
-            <Behaviors:Interaction.Behaviors>
-                <local:WatermarkBehavior Watermark="Address the issue of ... by ensuring that ...&#x0a;However, this may result in ... for some ...&#x0a;These will need to ... to accommodate the new behavior."/>
-            </Behaviors:Interaction.Behaviors>
         </TextBox>
         <Grid Grid.Row="4" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -114,18 +132,26 @@
                       PreviewKeyDown="FootersComboBox_PreviewKeyDown"
                       SelectionChanged="FootersComboBox_SelectionChanged"/>
         </Grid>
+        <TextBox x:Name="FootersWatermarkTextBox"
+                 Grid.Row="4" Grid.Column="2"
+                 FontFamily="Global Monospace" FontStyle="Italic" AcceptsReturn="True"
+                 MaxHeight="510" Padding="5" Margin="5" Opacity="1"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 IsEnabled="False"
+                 Text="Resolves: #3486"/>
         <TextBox x:Name="FootersTextBox"
                  Grid.Row="4" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
-                 MaxHeight="510" Padding="5" Margin="5"
+                 MaxHeight="510" Padding="5" Margin="5" Opacity="0"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 TabIndex="6">
+                 TabIndex="6"
+                 GotFocus="TextBox_GotFocus"
+                 LostFocus="TextBox_LostFocus"
+                 MouseEnter="TextBox_MouseEnter"
+                 MouseLeave="TextBox_MouseLeave">
             <TextBox.Text>
-                <Binding Path="Footer" />
+                <Binding Path="Footer" UpdateSourceTrigger="PropertyChanged" />
             </TextBox.Text>
-            <Behaviors:Interaction.Behaviors>
-                <local:WatermarkBehavior Watermark="Resolves: #3486"/>
-            </Behaviors:Interaction.Behaviors>
         </TextBox>
         <Grid Grid.Row="5" Grid.Column="2">
             <Grid.ColumnDefinitions>

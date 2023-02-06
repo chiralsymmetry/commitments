@@ -56,6 +56,19 @@ namespace Commitments
             HeaderChecks(message);
             BodyChecks(message);
             FootersChecks(message);
+            UpdateHints();
+        }
+
+        private void UpdateHints()
+        {
+            if (CurrentFocus != null)
+            {
+                HintStatus.Content = GetHints(CurrentFocus);
+            }
+            else
+            {
+                HintStatus.Content = string.Empty;
+            }
         }
 
         private void SetHint(IInputElement element, ValidationTag tag, string hint)
@@ -400,25 +413,58 @@ namespace Commitments
         private void GetFocus(IInputElement element)
         {
             CurrentFocus = element;
-            HintStatus.Content = GetHints(element);
+            UpdateHints();
         }
 
         private void LoseFocus(IInputElement element)
         {
             if (CurrentFocus == element)
             {
-                HintStatus.Content = string.Empty;
+                CurrentFocus = null;
+                UpdateHints();
             }
         }
 
-        private void HeaderTextBox_MouseEnter(object sender, MouseEventArgs e)
+        private void TextBox_MouseEnter(object sender, MouseEventArgs e)
         {
-            GetFocus(HeaderTextBox);
+            TextBox textBox = (TextBox)sender;
+            GetFocus(textBox);
         }
 
-        private void HeaderTextBox_MouseLeave(object sender, MouseEventArgs e)
+        private void TextBox_MouseLeave(object sender, MouseEventArgs e)
         {
-            LoseFocus(HeaderTextBox);
+            TextBox textBox = (TextBox)sender;
+            if (!textBox.IsKeyboardFocused)
+            {
+                LoseFocus(textBox);
+            }
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            textBox.Opacity = 1;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length == 0)
+            {
+                textBox.Opacity = 0;
+            }
+        }
+
+        private void TypesTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TypesTextBox.Text.Length > 0)
+            {
+                HeaderWatermarkTextBox.Text = HeaderWatermarkTextBox.Text.ToLower();
+            }
+            else
+            {
+                HeaderWatermarkTextBox.Text = HeaderWatermarkTextBox.Text.ToUpper()[0] + HeaderWatermarkTextBox.Text[1..];
+            }
         }
     }
 }
