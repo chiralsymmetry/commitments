@@ -76,7 +76,7 @@
                      Grid.Row="1" Grid.Column="0"
                      FontFamily="Global Monospace"
                      MaxWidth="150" Padding="5" Margin="5" Opacity="0"
-                     TabIndex="2"
+                     TabIndex="10"
                      TextChanged="TypesTextBox_TextChanged"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus"
@@ -95,7 +95,7 @@
                      Grid.Row="1" Grid.Column="1"
                      FontFamily="Global Monospace"
                      Padding="5" Margin="5" Opacity="0"
-                     TabIndex="3"
+                     TabIndex="0"
                      GotFocus="TextBox_GotFocus"
                      LostFocus="TextBox_LostFocus"
                      MouseEnter="TextBox_MouseEnter"
@@ -114,7 +114,7 @@
                 Grid.Row="1"
                 Padding="5" Margin="5"
                 SelectedIndex="0"
-                TabIndex="0"
+                TabIndex="8"
                 DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                 ItemsSource="{Binding TypeNames}"
                 DropDownClosed="TypesComboBox_DropDownClosed"
@@ -126,7 +126,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="1" IsChecked="{Binding IsBreaking}">Breaking Change</CheckBox>
+            <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="9" IsChecked="{Binding IsBreaking}">Breaking Change</CheckBox>
         </Grid>
         <TextBox x:Name="BodyWatermarkTextBox"
                  Grid.Row="3" Grid.Column="2"
@@ -140,7 +140,7 @@
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MinHeight="100" MaxHeight="510" Padding="5" Margin="5" Opacity="0"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 TabIndex="4"
+                 TabIndex="1"
                  GotFocus="TextBox_GotFocus"
                  LostFocus="TextBox_LostFocus"
                  MouseEnter="TextBox_MouseEnter"
@@ -155,7 +155,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ComboBox x:Name="FootersComboBox"
-                      Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5" TabIndex="5"
+                      Grid.Row="1" SelectedIndex="0" Padding="5" Margin="5" TabIndex="2"
                       DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                       ItemsSource="{Binding FooterTokens}"
                       DropDownClosed="FootersComboBox_DropDownClosed"
@@ -174,7 +174,7 @@
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MaxHeight="510" Padding="5" Margin="5" Opacity="0"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 TabIndex="6"
+                 TabIndex="3"
                  GotFocus="TextBox_GotFocus"
                  LostFocus="TextBox_LostFocus"
                  MouseEnter="TextBox_MouseEnter"
@@ -190,10 +190,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Padding="5" Margin="5" TabIndex="7" Click="BreakingChangeButton_Click">_Add Breaking Change</Button>
-            <Button Grid.Column="1" Padding="5" Margin="5" TabIndex="8" Click="CopyButton_Click">_Copy</Button>
-            <Button Grid.Column="2" Padding="5" Margin="5" TabIndex="9" Click="PreviewButton_Click">_Preview</Button>
-            <Button Grid.Column="3" Padding="5" Margin="5" TabIndex="10" Background="#f4cccc" Click="ClearButton_Click">Clear</Button>
+            <Button Grid.Column="0" Padding="5" Margin="5" TabIndex="4" Click="BreakingChangeButton_Click">_Add Breaking Change</Button>
+            <Button Grid.Column="1" Padding="5" Margin="5" TabIndex="5" Click="CopyButton_Click">_Copy</Button>
+            <Button Grid.Column="2" Padding="5" Margin="5" TabIndex="6" Click="PreviewButton_Click">_Preview</Button>
+            <Button Grid.Column="3" Padding="5" Margin="5" TabIndex="7" Background="#f4cccc" Click="ClearButton_Click">Clear</Button>
         </Grid>
         <StatusBar Grid.Row="7" Grid.ColumnSpan="4">
             <StatusBarItem> </StatusBarItem>
