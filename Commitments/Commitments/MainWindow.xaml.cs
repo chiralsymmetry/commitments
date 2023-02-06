@@ -486,5 +486,25 @@ namespace Commitments
                 HeaderWatermarkTextBox.Text = HeaderWatermarkTextBox.Text.ToUpper()[0] + HeaderWatermarkTextBox.Text[1..];
             }
         }
+
+        private void GoToTypes_Command(object sender, ExecutedRoutedEventArgs e)
+        {
+            TypesTextBox.Focus();
+        }
+
+        private void GoToHeader_Command(object sender, ExecutedRoutedEventArgs e)
+        {
+            HeaderTextBox.Focus();
+        }
+
+        private void GoToBody_Command(object sender, ExecutedRoutedEventArgs e)
+        {
+            BodyTextBox.Focus();
+        }
+
+        private void GoToFooters_Command(object sender, ExecutedRoutedEventArgs e)
+        {
+            FootersTextBox.Focus();
+        }
     }
 }
