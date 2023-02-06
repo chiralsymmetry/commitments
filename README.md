@@ -36,4 +36,4 @@ Pull requests are welcome, but for major changes, please open an issue
 first to discuss what you would like to change.
 
 ## License
-The source code is licensed as [BSD+Patent](https://opensource.org/licenses/BSDplusPatent).
+This project as a whole is licensed as [BSD+Patent](https://opensource.org/licenses/BSDplusPatent).
