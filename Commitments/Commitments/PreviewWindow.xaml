@@ -6,6 +6,22 @@
         xmlns:local="clr-namespace:Commitments"
         mc:Ignorable="d"
         Title="Preview | Commitments" Height="480" Width="640">
+    <Window.Resources>
+        <RoutedUICommand x:Key="BackCmd" RoutedUICommand.Text="" />
+        <RoutedUICommand x:Key="CopyCmd" RoutedUICommand.Text="" />
+        <RoutedUICommand x:Key="ClearBackCmd" RoutedUICommand.Text="" />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource BackCmd}" Executed="BackButton_Click" />
+        <CommandBinding Command="{StaticResource CopyCmd}" Executed="CopyButton_Click" />
+        <CommandBinding Command="{StaticResource ClearBackCmd}" Executed="ClearBackButton_Click" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{StaticResource BackCmd}" />
+        <KeyBinding Key="B" Modifiers="Alt" Command="{StaticResource BackCmd}" />
+        <KeyBinding Key="C" Modifiers="Alt" Command="{StaticResource CopyCmd}" />
+        <KeyBinding Key="Delete" Modifiers="Shift+Alt" Command="{StaticResource ClearBackCmd}" />
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -29,8 +45,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Padding="5" Margin="5" Click="BackButton_Click">Back</Button>
-            <Button Grid.Column="1" Padding="5" Margin="5" Click="CopyButton_Click">Copy</Button>
+            <Button Grid.Column="0" Padding="5" Margin="5" Click="BackButton_Click">_Back</Button>
+            <Button Grid.Column="1" Padding="5" Margin="5" Click="CopyButton_Click">_Copy</Button>
             <Button Grid.Column="2" Padding="5" Margin="5" Click="ClearBackButton_Click" Background="#f4cccc">Clear &amp; Back</Button>
         </Grid>
     </Grid>
