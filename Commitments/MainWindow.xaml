@@ -120,7 +120,13 @@
                 ItemsSource="{Binding TypeNames}"
                 DropDownClosed="TypesComboBox_DropDownClosed"
                 PreviewKeyDown="TypesComboBox_PreviewKeyDown"
-                SelectionChanged="TypesComboBox_SelectionChanged"/>
+                SelectionChanged="TypesComboBox_SelectionChanged">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <EventSetter Event="PreviewMouseMove" Handler="TypesComboBoxItem_PreviewMouseMove"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -161,7 +167,13 @@
                       ItemsSource="{Binding FooterTokens}"
                       DropDownClosed="FootersComboBox_DropDownClosed"
                       PreviewKeyDown="FootersComboBox_PreviewKeyDown"
-                      SelectionChanged="FootersComboBox_SelectionChanged"/>
+                      SelectionChanged="FootersComboBox_SelectionChanged">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <EventSetter Event="PreviewMouseMove" Handler="FootersComboBoxItem_PreviewMouseMove"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+            </ComboBox>
         </Grid>
         <TextBox x:Name="FootersWatermarkTextBox"
                  Grid.Row="4" Grid.Column="2"

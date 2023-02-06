@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -347,6 +348,7 @@ namespace Commitments
             {
                 ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
             }
+            UpdateHints();
         }
 
         private void TypesComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -385,6 +387,7 @@ namespace Commitments
             {
                 FootersComboBoxChange(comboBox);
             }
+            UpdateHints();
         }
 
         private void FootersComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -505,6 +508,26 @@ namespace Commitments
         private void GoToFooters_Command(object sender, ExecutedRoutedEventArgs e)
         {
             FootersTextBox.Focus();
+        }
+
+        private void TypesComboBoxItem_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            ComboBoxItem comboBoxItem = (ComboBoxItem)sender;
+            string item = (string)comboBoxItem.Content;
+            if (TypeDescriptions.ContainsKey(item))
+            {
+                HintStatus.Content = TypeDescriptions[item];
+            }
+        }
+
+        private void FootersComboBoxItem_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            ComboBoxItem comboBoxItem = (ComboBoxItem)sender;
+            string item = (string)comboBoxItem.Content;
+            if (FooterExamplesDescriptions.ContainsKey(item))
+            {
+                HintStatus.Content = FooterExamplesDescriptions[item].Item2;
+            }
         }
     }
 }
