@@ -37,3 +37,4 @@ first to discuss what you would like to change.
 
 ## License
 This project as a whole is licensed as [BSD+Patent](https://opensource.org/licenses/BSDplusPatent).
+Some resources may carry other licenses listed, if applicable, in an adjacent `COPYRIGHT` file.
