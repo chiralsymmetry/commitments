@@ -38,6 +38,7 @@ namespace Commitments
         private Dictionary<IInputElement, Dictionary<ValidationTag, string>> Hints { get; set; } = new();
 
         private IInputElement? CurrentFocus = null;
+        private IInputElement? BackupFocus = null;
 
         public MainWindow()
         {
@@ -80,6 +81,11 @@ namespace Commitments
             Hints[element][tag] = hint;
         }
 
+        private void UnsetHints(IInputElement element)
+        {
+            Hints.Remove(element);
+        }
+
         private void UnsetHint(IInputElement element, ValidationTag tag)
         {
             if (Hints.ContainsKey(element) && Hints[element].ContainsKey(tag))
@@ -108,6 +114,7 @@ namespace Commitments
 
         private void HeaderChecks(CommitMessage message)
         {
+            UnsetHints(HeaderTextBox);
             if (message.Header.Length == 0)
             {
                 // Header is obligatory.
@@ -186,28 +193,33 @@ namespace Commitments
         }
         private void BodyChecks(CommitMessage message)
         {
+            UnsetHints(BodyTextBox);
             if (message.BodyWidth > 72)
             {
-                // Body should not be wider than 72 characters.
                 // Exception: quoted code may be as wide as needed.
                 BodyTextBox.Background = WarningColor;
+                SetHint(BodyTextBox, ValidationTag.LENGTH, "Body should not be wider than 72 characters.");
             }
             else
             {
                 BodyTextBox.Background = DefaultColor;
+                UnsetHint(BodyTextBox, ValidationTag.LENGTH);
             }
         }
 
         private void FootersChecks(CommitMessage message)
         {
+            UnsetHints(FootersTextBox);
             if (message.FooterWidth > 72)
             {
                 // Footers should (I assume) be subject to the same limit as the body.
                 FootersTextBox.Background = WarningColor;
+                SetHint(FootersTextBox, ValidationTag.LENGTH, "Footer should not be wider than 72 characters.");
             }
             else
             {
                 FootersTextBox.Background = DefaultColor;
+                UnsetHint(FootersTextBox, ValidationTag.LENGTH);
             }
         }
 
@@ -410,13 +422,13 @@ namespace Commitments
             }
         }
 
-        private void GetFocus(IInputElement element)
+        private void SetHintFocus(IInputElement? element)
         {
             CurrentFocus = element;
             UpdateHints();
         }
 
-        private void LoseFocus(IInputElement element)
+        private void UnsetHintFocus(IInputElement element)
         {
             if (CurrentFocus == element)
             {
@@ -428,15 +440,21 @@ namespace Commitments
         private void TextBox_MouseEnter(object sender, MouseEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            GetFocus(textBox);
+            if (CurrentFocus != textBox)
+            {
+                BackupFocus = CurrentFocus;
+                SetHintFocus(textBox);
+            }
         }
 
         private void TextBox_MouseLeave(object sender, MouseEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!textBox.IsKeyboardFocused)
+            if (CurrentFocus == textBox && !textBox.IsKeyboardFocused)
             {
-                LoseFocus(textBox);
+                CurrentFocus = BackupFocus;
+                BackupFocus = null;
+                SetHintFocus(CurrentFocus);
             }
         }
 
@@ -444,6 +462,7 @@ namespace Commitments
         {
             TextBox textBox = (TextBox)sender;
             textBox.Opacity = 1;
+            SetHintFocus(textBox);
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -453,6 +472,7 @@ namespace Commitments
             {
                 textBox.Opacity = 0;
             }
+            UnsetHintFocus(textBox);
         }
 
         private void TypesTextBox_TextChanged(object sender, TextChangedEventArgs e)
