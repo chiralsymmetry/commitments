@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733333"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="App-icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title5061">Commitments Icon</title>
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:zoom="1.2938725"
+     inkscape:cx="77.287369"
+     inkscape:cy="218.72325"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Lager 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#0c0904;stroke-width:4.242;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="M 13.825883,11.180048 H 61.397937 V 40.966806 H 53.589758 C 50.860217,43.853669 51.195462,49.192361 52.288396,55.137203 47.266685,51.545916 41.846782,48.286455 41.299105,40.966806 H 13.825883 Z"
+       id="path2871"
+       sodipodi:nodetypes="cccccccc" />
+    <g
+       id="g3814"
+       transform="rotate(4.3947632,278.38899,1164.6178)">
+      <path
+         sodipodi:type="star"
+         style="fill:#ffffff;fill-opacity:1;stroke:#0c0904;stroke-width:4.24201;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         id="path2979"
+         inkscape:flatsided="false"
+         sodipodi:sides="8"
+         sodipodi:cx="-65.212753"
+         sodipodi:cy="66.658714"
+         sodipodi:r1="10.597325"
+         sodipodi:r2="14.129767"
+         sodipodi:arg1="-0.31204213"
+         sodipodi:arg2="0.080656952"
+         inkscape:rounded="0.2"
+         inkscape:randomized="0"
+         d="m -55.127187,63.405306 c 0.364671,1.130482 4.093969,3.207854 3.998265,4.391837 -0.0957,1.183983 -4.110243,2.635403 -4.651752,3.692636 -0.54151,1.057233 0.626578,5.163169 -0.278297,5.932699 -0.904875,0.769529 -4.769892,-1.042869 -5.900374,-0.678198 -1.130482,0.364672 -3.207854,4.09397 -4.391837,3.998266 -1.183983,-0.0957 -2.635403,-4.110243 -3.692636,-4.651753 -1.057233,-0.541509 -5.163169,0.626579 -5.932699,-0.278297 -0.769529,-0.904875 1.042869,-4.769891 0.678198,-5.900373 -0.364672,-1.130482 -4.09397,-3.207855 -3.998266,-4.391837 0.0957,-1.183983 4.110243,-2.635403 4.651753,-3.692637 0.541509,-1.057233 -0.626579,-5.163169 0.278297,-5.932698 0.904875,-0.769529 4.769891,1.042869 5.900373,0.678197 1.130482,-0.364671 3.207855,-4.093969 4.391837,-3.998265 1.183983,0.0957 2.635403,4.110243 3.692637,4.651752 1.057233,0.54151 5.163169,-0.626578 5.932698,0.278297 0.769529,0.904875 -1.042869,4.769892 -0.678197,5.900374 z"
+         inkscape:transform-center-x="-0.080019133"
+         inkscape:transform-center-y="-2.9937346" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#0c0904;stroke-width:4.24201;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         d="m -70.851994,66.658714 3.743415,3.686359 6.667491,-6.651412"
+         id="path3761"
+         sodipodi:nodetypes="ccc" />
+    </g>
+    <path
+       style="fill:none;fill-opacity:1;stroke:#0c0904;stroke-width:4.242;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 20.121913,27.230193 c 0.604349,-0.945673 1.066088,-1.973556 1.590555,-2.964216 0.474253,-0.895811 0.905897,-1.817278 1.445959,-2.675024 0.192606,-0.305904 0.431603,-0.580035 0.650681,-0.867575 0.404295,-0.530637 0.560171,-0.66549 0.867576,-1.229066 0.05161,-0.09461 0.03682,-0.289191 0.144596,-0.289191 0.0241,0 0,0.0482 0,0.0723 0,0.168695 0,0.33739 0,0.506085 0,0.562885 -0.01626,0.03764 0.216894,1.156767 0.101261,0.486058 0.319796,1.845812 0.361489,2.168939 0.08839,0.684983 0.121882,3.242051 0.72298,3.5426 0.246156,0.123078 0.84455,0.341781 1.156766,0.216894 0.205558,-0.08222 1.752794,-1.925407 1.952046,-2.168939 0.0305,-0.03728 0.35034,-0.558 0.506084,-0.506086 0.0969,0.0323 0.125344,0.554412 0.144598,0.650682 0.01495,0.07473 0.0482,0.144596 0.0723,0.216894 0.0482,0.144596 0.116507,0.283981 0.144595,0.433788 0.09452,0.504112 -0.0059,0.855729 0.216895,1.301363 0.109215,0.218427 0.613373,-0.03032 0.795277,-0.0723 1.022164,-0.235884 2.10617,-0.440934 2.964217,-1.084469 0.194439,-0.14583 0.166208,-0.238507 0.361489,-0.433788 0.06144,-0.06144 0.162613,-0.07674 0.216895,-0.144596 0.04761,-0.05951 0.03309,-0.151546 0.0723,-0.216894 0.195014,-0.325024 0.07389,-0.0016 0.289193,-0.216894 0.03811,-0.0381 0.03419,-0.106491 0.0723,-0.144596"
+       id="path3956" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#0c0904;stroke-width:4.242;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 40.582233,24.338275 c 2.038088,2.830676 0.858486,2.426447 3.831791,-1.156767 0.110975,-0.133737 0.15349,-0.325227 0.289193,-0.433788 0.04208,-0.03366 0.04457,0.09839 0.0723,0.144596 0.116972,0.194953 0.238935,0.386891 0.36149,0.578384 0.263046,0.411006 0.554214,0.804793 0.795279,1.229065 0.812062,1.429232 1.203169,2.152769 1.373661,3.687196 0.03902,0.351205 0.02627,0.95963 -0.144597,1.301364 -0.03886,0.07772 -0.155451,0.08315 -0.216893,0.144594 -0.06144,0.06144 -0.07784,0.161269 -0.144597,0.216895 -0.305438,0.254532 -1.026194,0.543769 -1.373661,0.650682 -0.09213,0.02835 -0.192794,0 -0.289192,0 -0.0241,0 -0.0723,0.0241 -0.0723,0 0,-1.35133 0.616273,-2.29635 1.373661,-3.398004 0.696434,-1.012996 1.539468,-1.876022 2.53043,-2.602727 0.346517,-0.254112 0.628759,-0.331808 1.012172,-0.506086 0.421306,-0.191504 0.716542,-0.447035 1.084469,-0.722979 0.202575,-0.151932 0.448106,-0.281856 0.650681,-0.433788 0.120497,-0.0964 0.240994,-0.192795 0.36149,-0.289192 0.0482,-0.0241 0.101486,-0.03996 0.144595,-0.0723 0.06951,-0.05213 0.216895,-0.231487 0.216895,-0.144596 0,0.09936 -0.05281,0.191758 -0.0723,0.289192 -0.199509,0.997536 0.06374,-0.171272 -0.144597,0.939874 -0.08832,0.471049 -0.428062,1.176808 -0.289192,1.662853 0.01873,0.06554 0.07847,0.128064 0.144597,0.144596 0.440346,0.110086 2.370397,-0.225018 2.81962,-0.289192"
+       id="path3958" />
+  </g>
+  <metadata
+     id="metadata5059">
+    <rdf:RDF>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nd/4.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+      </cc:License>
+      <cc:Work
+         rdf:about="">
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nd/4.0/" />
+        <dc:title>Commitments Icon</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Chiral Symmetry</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

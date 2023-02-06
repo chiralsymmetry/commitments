@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Commitments"
         mc:Ignorable="d"
-        Title="Preview | Commitments" Height="480" Width="640">
+        Title="Preview | Commitments" Height="480" Width="640"
+        Icon="Resources/App-icon.ico">
     <Window.Resources>
         <RoutedUICommand x:Key="BackCmd" RoutedUICommand.Text="" />
         <RoutedUICommand x:Key="CopyCmd" RoutedUICommand.Text="" />

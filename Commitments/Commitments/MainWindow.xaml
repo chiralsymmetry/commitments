@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Commitments"
         mc:Ignorable="d"
-        Title="Commitments" Height="480" Width="800">
+        Title="Commitments" Height="480" Width="800"
+        Icon="Resources/App-icon.ico">
     <Window.DataContext>
         <local:CommitMessage/>
     </Window.DataContext>
