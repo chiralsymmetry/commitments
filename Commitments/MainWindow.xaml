@@ -48,6 +48,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -57,7 +58,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+        <Grid Grid.Row="2" Grid.Column="2" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -106,12 +107,12 @@
                 </TextBox.Text>
             </TextBox>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ComboBox 
+            <ComboBox x:Name="TypesComboBox"
                 Grid.Row="1"
                 Padding="5" Margin="5"
                 SelectedIndex="0"
@@ -128,7 +129,7 @@
                 </ComboBox.ItemContainerStyle>
             </ComboBox>
         </Grid>
-        <Grid Grid.Row="3" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -136,14 +137,14 @@
             <CheckBox x:Name="BreakingCheckBox" Grid.Row="0" Margin="5" TabIndex="9" IsChecked="{Binding IsBreaking}">Breaking Change</CheckBox>
         </Grid>
         <TextBox x:Name="BodyWatermarkTextBox"
-                 Grid.Row="3" Grid.Column="2"
+                 Grid.Row="4" Grid.Column="2"
                  FontFamily="Global Monospace" FontStyle="Italic" AcceptsReturn="True"
                  MinHeight="100" MaxHeight="510" Padding="5" Margin="5" Opacity="1"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                  IsEnabled="False"
                  Text="Address the issue of ... by ensuring that ...&#x0a;However, this may result in ... for some ...&#x0a;These will need to ... to accommodate the new behavior."/>
         <TextBox x:Name="BodyTextBox"
-                 Grid.Row="3" Grid.Column="2"
+                 Grid.Row="4" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MinHeight="100" MaxHeight="510" Padding="5" Margin="5" Opacity="0"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -156,7 +157,7 @@
                 <Binding Path="Body" UpdateSourceTrigger="PropertyChanged" />
             </TextBox.Text>
         </TextBox>
-        <Grid Grid.Row="4" Grid.Column="1">
+        <Grid Grid.Row="5" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
@@ -176,14 +177,14 @@
             </ComboBox>
         </Grid>
         <TextBox x:Name="FootersWatermarkTextBox"
-                 Grid.Row="4" Grid.Column="2"
+                 Grid.Row="5" Grid.Column="2"
                  FontFamily="Global Monospace" FontStyle="Italic" AcceptsReturn="True"
                  MaxHeight="510" Padding="5" Margin="5" Opacity="1"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                  IsEnabled="False"
                  Text="Resolves: #3486"/>
         <TextBox x:Name="FootersTextBox"
-                 Grid.Row="4" Grid.Column="2"
+                 Grid.Row="5" Grid.Column="2"
                  FontFamily="Global Monospace" AcceptsReturn="True"
                  MaxHeight="510" Padding="5" Margin="5" Opacity="0"
                  ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -196,7 +197,7 @@
                 <Binding Path="Footer" UpdateSourceTrigger="PropertyChanged" />
             </TextBox.Text>
         </TextBox>
-        <Grid Grid.Row="5" Grid.Column="2">
+        <Grid Grid.Row="6" Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -208,9 +209,13 @@
             <Button Grid.Column="2" Padding="5" Margin="5" TabIndex="6" Click="PreviewButton_Click">_Preview</Button>
             <Button Grid.Column="3" Padding="5" Margin="5" TabIndex="7" Background="#f4cccc" Click="ClearButton_Click">Clear</Button>
         </Grid>
-        <StatusBar Grid.Row="7" Grid.ColumnSpan="4">
+        <StatusBar x:Name="StatusBarTop" Grid.Row="0" Grid.ColumnSpan="4" Opacity="0">
             <StatusBarItem> </StatusBarItem>
-            <StatusBarItem x:Name="HintStatus"></StatusBarItem>
+            <StatusBarItem x:Name="HintStatusTop"></StatusBarItem>
+        </StatusBar>
+        <StatusBar x:Name="StatusBarBottom" Grid.Row="8" Grid.ColumnSpan="4">
+            <StatusBarItem> </StatusBarItem>
+            <StatusBarItem x:Name="HintStatusBottom"></StatusBarItem>
         </StatusBar>
     </Grid>
 </Window>

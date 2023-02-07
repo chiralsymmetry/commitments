@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -65,11 +66,13 @@ namespace Commitments
         {
             if (CurrentFocus != null)
             {
-                HintStatus.Content = GetHints(CurrentFocus);
+                HintStatusTop.Content = GetHints(CurrentFocus);
+                HintStatusBottom.Content = GetHints(CurrentFocus);
             }
             else
             {
-                HintStatus.Content = string.Empty;
+                HintStatusTop.Content = string.Empty;
+                HintStatusBottom.Content = string.Empty;
             }
         }
 
@@ -349,6 +352,8 @@ namespace Commitments
                 ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
             }
             UpdateHints();
+            StatusBarTop.Opacity = 0;
+            StatusBarBottom.Opacity = 1;
         }
 
         private void TypesComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -360,6 +365,7 @@ namespace Commitments
                 {
                     ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
                 }
+                e.Handled = true;
             }
         }
 
@@ -369,6 +375,20 @@ namespace Commitments
             if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
             {
                 ReadComboBoxSetTextBox(comboBox, TypesTextBox, (string)comboBox.SelectedItem, ",");
+            }
+            else if (!comboBox.IsDropDownOpen)
+            {
+                string item = (string)comboBox.SelectedItem;
+                if (TypeDescriptions.ContainsKey(item))
+                {
+                    HintStatusTop.Content = TypeDescriptions[item];
+                    HintStatusBottom.Content = TypeDescriptions[item];
+                }
+                else
+                {
+                    HintStatusTop.Content = string.Empty;
+                    HintStatusBottom.Content = string.Empty;
+                }
             }
         }
 
@@ -388,6 +408,8 @@ namespace Commitments
                 FootersComboBoxChange(comboBox);
             }
             UpdateHints();
+            StatusBarTop.Opacity = 0;
+            StatusBarBottom.Opacity = 1;
         }
 
         private void FootersComboBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -399,6 +421,7 @@ namespace Commitments
                 {
                     FootersComboBoxChange(comboBox);
                 }
+                e.Handled = true;
             }
         }
 
@@ -408,6 +431,20 @@ namespace Commitments
             if (comboBox.SelectedIndex > 0 && comboBox.IsDropDownOpen)
             {
                 FootersComboBoxChange(comboBox);
+            }
+            else if (!comboBox.IsDropDownOpen)
+            {
+                string item = (string)comboBox.SelectedItem;
+                if (FooterExamplesDescriptions.ContainsKey(item))
+                {
+                    HintStatusTop.Content = FooterExamplesDescriptions[item].Item2;
+                    HintStatusBottom.Content = FooterExamplesDescriptions[item].Item2;
+                }
+                else
+                {
+                    HintStatusTop.Content = string.Empty;
+                    HintStatusBottom.Content = string.Empty;
+                }
             }
         }
 
@@ -516,8 +553,15 @@ namespace Commitments
             string item = (string)comboBoxItem.Content;
             if (TypeDescriptions.ContainsKey(item))
             {
-                HintStatus.Content = TypeDescriptions[item];
+                HintStatusTop.Content = TypeDescriptions[item];
+                HintStatusBottom.Content = TypeDescriptions[item];
             }
+            else
+            {
+                HintStatusTop.Content = string.Empty;
+                HintStatusBottom.Content = string.Empty;
+            }
+            MoveStatusBar(TypesComboBox);
         }
 
         private void FootersComboBoxItem_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -526,7 +570,33 @@ namespace Commitments
             string item = (string)comboBoxItem.Content;
             if (FooterExamplesDescriptions.ContainsKey(item))
             {
-                HintStatus.Content = FooterExamplesDescriptions[item].Item2;
+                HintStatusTop.Content = FooterExamplesDescriptions[item].Item2;
+                HintStatusBottom.Content = FooterExamplesDescriptions[item].Item2;
+            }
+            else
+            {
+                HintStatusTop.Content = string.Empty;
+                HintStatusBottom.Content = string.Empty;
+            }
+            MoveStatusBar(FootersComboBox);
+        }
+
+        private void MoveStatusBar(ComboBox comboBox)
+        {
+            if (comboBox.Template.FindName("PART_Popup", comboBox) is Popup popup)
+            {
+                if (comboBox.IsDropDownOpen && popup.Child is UIElement dropDownMenu)
+                {
+                    var dropDownMenuPoint = dropDownMenu.PointToScreen(new Point(0, 0));
+                    var dropDownMenuRect = new Rect(dropDownMenuPoint, dropDownMenu.RenderSize);
+                    var statusBarPoint = StatusBarBottom.PointToScreen(new Point(0, 0));
+                    var statusBarRect = new Rect(statusBarPoint, StatusBarBottom.RenderSize);
+                    if (statusBarRect.Top < dropDownMenuRect.Bottom)
+                    {
+                        StatusBarTop.Opacity = 1;
+                        StatusBarBottom.Opacity = 0;
+                    }
+                }
             }
         }
     }
