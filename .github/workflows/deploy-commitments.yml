@@ -1,0 +1,30 @@
+name: "Deploy License Guide"
+
+on:
+  push:
+    tags:
+      - "commitments/v*"
+
+env:
+  PROJECT_PATH: Commitments/Commitments.csproj
+  ARTIFACT_NAME: Commitments.exe
+  ARTIFACT_PATH: Commitments/bin/Release/net6.0-windows/win-x64/publish/Commitments.exe
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+    - name: Publish
+      run:  dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained false -r win-x64 -p:PublishSingleFile=true
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: ${{ env.ARTIFACT_PATH }}
