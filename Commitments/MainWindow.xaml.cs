@@ -199,16 +199,38 @@ namespace Commitments
         private void BodyChecks(CommitMessage message)
         {
             UnsetHints(BodyTextBox);
-            if (message.BodyWidth > 72)
+            if (message.Body.Length > 0)
             {
-                // Exception: quoted code may be as wide as needed.
-                BodyTextBox.Background = WarningColor;
-                SetHint(BodyTextBox, ValidationTag.LENGTH, "Body should not be wider than 72 characters.");
+                var textBoxBG = DefaultColor;
+                if (message.BodyWidth > 72)
+                {
+                    // Exception: quoted code may be as wide as needed.
+                    textBoxBG = WarningColor;
+                    SetHint(BodyTextBox, ValidationTag.LENGTH, "Body should not be wider than 72 characters.");
+                }
+                else
+                {
+                    UnsetHint(BodyTextBox, ValidationTag.LENGTH);
+                }
+                {
+                    var bodyLines = message.Body.ReplaceLineEndings().Split(Environment.NewLine);
+                    var firstLine = bodyLines[0];
+                    var lastLine = bodyLines[^1];
+                    if (firstLine.Trim() == string.Empty || lastLine.Trim() == string.Empty)
+                    {
+                        textBoxBG = WarningColor;
+                        SetHint(BodyTextBox, ValidationTag.WHITESPACE, "Body should not have leading or trailing empty lines.");
+                    }
+                    else
+                    {
+                        UnsetHint(BodyTextBox, ValidationTag.WHITESPACE);
+                    }
+                }
+                BodyTextBox.Background = textBoxBG;
             }
             else
             {
                 BodyTextBox.Background = DefaultColor;
-                UnsetHint(BodyTextBox, ValidationTag.LENGTH);
             }
         }
 
