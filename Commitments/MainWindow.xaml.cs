@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -214,16 +215,36 @@ namespace Commitments
         private void FootersChecks(CommitMessage message)
         {
             UnsetHints(FootersTextBox);
-            if (message.FooterWidth > 72)
+            if (message.Footer.Length > 0)
             {
-                // Footers should (I assume) be subject to the same limit as the body.
-                FootersTextBox.Background = WarningColor;
-                SetHint(FootersTextBox, ValidationTag.LENGTH, "Footer should not be wider than 72 characters.");
+                var textBoxBG = DefaultColor;
+                if (message.FooterWidth > 72)
+                {
+                    // Footers should (I assume) be subject to the same limit as the body.
+                    textBoxBG = WarningColor;
+                    SetHint(FootersTextBox, ValidationTag.LENGTH, "Footer should not be wider than 72 characters.");
+                }
+                else
+                {
+                    UnsetHint(FootersTextBox, ValidationTag.LENGTH);
+                }
+                {
+                    var footers = message.Footer.ReplaceLineEndings().Split(Environment.NewLine);
+                    if (footers.Any(s => string.IsNullOrEmpty(s.Trim())))
+                    {
+                        textBoxBG = WarningColor;
+                        SetHint(FootersTextBox, ValidationTag.WHITESPACE, "Footer should not contain empty or whitespace only lines.");
+                    }
+                    else
+                    {
+                        UnsetHint(FootersTextBox, ValidationTag.LENGTH);
+                    }
+                }
+                FootersTextBox.Background = textBoxBG;
             }
             else
             {
                 FootersTextBox.Background = DefaultColor;
-                UnsetHint(FootersTextBox, ValidationTag.LENGTH);
             }
         }
 
