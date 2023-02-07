@@ -4,6 +4,8 @@ consise Git commit messages, reminding you of — but not enforcing — what
 is commonly seen as “best practices”. It supports the use of “types”
 and “footers” in the vein of [Conventional Commits](https://www.conventionalcommits.org/).
 
+![](../../blob/assets/screenshot.png)
+
 ## Usage
 Download, run, click, write, copy, and paste into your favorite Git
 commit message editor.
